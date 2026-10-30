@@ -69,11 +69,9 @@ export default function ProfileView() {
       <div className="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 border border-slate-200/80 dark:border-slate-800 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-6">
         <div className="flex items-center gap-5">
           <div className="relative">
-            <img
-              src={user.avatar}
-              alt={user.name}
-              className="w-20 h-20 sm:w-24 sm:h-24 rounded-3xl object-cover ring-4 ring-brand-500/20 shadow-md"
-            />
+            <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-3xl bg-gradient-to-tr from-brand-600 via-teal-600 to-teal-400 text-white font-display font-extrabold text-3xl sm:text-4xl flex items-center justify-center ring-4 ring-brand-500/20 shadow-lg">
+              {user.name.replace(/[^A-Za-z0-9]/g, '').slice(0, 2).toUpperCase() || 'U1'}
+            </div>
             <div className="absolute -bottom-2 -right-2 px-2.5 py-0.5 rounded-full text-[10px] font-extrabold uppercase bg-sun text-slate-950 shadow-md">
               {tier.name}
             </div>
@@ -273,49 +271,41 @@ export default function ProfileView() {
           </button>
         </form>
 
-        {/* Demo Switcher Quick Card */}
+        {/* Account Security & Support Card */}
         <div className="md:col-span-5 bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 border border-slate-200/80 dark:border-slate-800 shadow-sm space-y-4">
           <h4 className="font-display font-extrabold text-base text-slate-900 dark:text-white border-b border-slate-100 dark:border-slate-800 pb-3 flex items-center gap-2">
-            <Sparkles className="w-4 h-4 text-sun" />
-            Switch Demo Account
+            <ShieldCheck className="w-4 h-4 text-emerald-500" />
+            Account Security & Perks
           </h4>
 
-          <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
-            Test different loyalty tiers, pre-loaded wishlist items, and past bookings in one click:
-          </p>
+          <div className="space-y-3 text-xs">
+            <div className="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-800 flex items-center justify-between">
+              <div>
+                <div className="font-bold text-slate-900 dark:text-white">Club Membership Status</div>
+                <div className="text-[11px] text-slate-400">Verified Gold Privilege Member</div>
+              </div>
+              <span className="px-2.5 py-1 rounded-full text-[10px] font-extrabold uppercase bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300">
+                Active
+              </span>
+            </div>
 
-          <div className="space-y-2.5">
-            {USERS.map(demo => (
-              <button
-                key={demo.id}
-                onClick={() => signInUser(demo)}
-                className={`w-full p-3.5 rounded-2xl border text-left transition-all flex items-center justify-between ${
-                  demo.id === user.id
-                    ? 'border-brand-500 bg-brand-50/50 dark:bg-brand-950/30'
-                    : 'border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800'
-                }`}
-              >
-                <div className="flex items-center gap-3">
-                  <img
-                    src={demo.avatar}
-                    alt={demo.name}
-                    className="w-10 h-10 rounded-full object-cover"
-                  />
-                  <div>
-                    <div className="font-bold text-xs text-slate-900 dark:text-white">
-                      {demo.name}
-                    </div>
-                    <div className="text-[11px] text-slate-400">
-                      {demo.home} • {demo.points.toLocaleString()} pts
-                    </div>
-                  </div>
-                </div>
+            <div className="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-800 flex items-center justify-between">
+              <div>
+                <div className="font-bold text-slate-900 dark:text-white">VIP Travel Concierge</div>
+                <div className="text-[11px] text-slate-400">24/7 Priority Emergency Line</div>
+              </div>
+              <span className="text-brand-600 dark:text-brand-400 font-bold">
+                Unlocked
+              </span>
+            </div>
 
-                <span className="px-2.5 py-0.5 rounded-full text-[10px] font-extrabold uppercase bg-amber-100 text-amber-900 dark:bg-amber-950 dark:text-amber-300">
-                  {demo.tier}
-                </span>
-              </button>
-            ))}
+            <div className="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-800 flex items-center justify-between">
+              <div>
+                <div className="font-bold text-slate-900 dark:text-white">Digital Travel Vault</div>
+                <div className="text-[11px] text-slate-400">Auto-sync e-tickets & vouchers</div>
+              </div>
+              <CheckCircle2 className="w-4 h-4 text-emerald-500" />
+            </div>
           </div>
         </div>
       </div>

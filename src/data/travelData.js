@@ -6,34 +6,9 @@ export const USERS = [
     pass: 'demo123',
     tier: 'Gold',
     home: 'Mumbai',
-    avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80',
     color: '#0B7A83',
     phone: '+91 98200 11001',
     points: 12400
-  },
-  {
-    id: 2,
-    name: 'User 2',
-    email: 'user2@wanderlane.demo',
-    pass: 'demo123',
-    tier: 'Silver',
-    home: 'Bengaluru',
-    avatar: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=200&q=80',
-    color: '#C2410C',
-    phone: '+91 98450 22002',
-    points: 5200
-  },
-  {
-    id: 3,
-    name: 'User 3',
-    email: 'user3@wanderlane.demo',
-    pass: 'demo123',
-    tier: 'Explorer',
-    home: 'Delhi',
-    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80',
-    color: '#6D4AE0',
-    phone: '+91 98110 33003',
-    points: 900
   }
 ];
 

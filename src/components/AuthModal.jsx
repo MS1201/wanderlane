@@ -40,7 +40,7 @@ export default function AuthModal() {
     const found = USERS.find(u => u.email.toLowerCase() === trimmedEmail);
 
     if (!found) {
-      setError('No account found with this email. Please click one of the demo users below.');
+      setError('No account found with this email. You can use the Demo Account button below.');
       return;
     }
 
@@ -80,7 +80,7 @@ export default function AuthModal() {
       pass: signupPass,
       tier: 'Explorer',
       home: signupHome,
-      avatar: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=200&q=80',
+      avatar: '',
       color: '#0B7A83',
       phone: signupPhone.trim(),
       points: 100
@@ -149,34 +149,34 @@ export default function AuthModal() {
             </div>
           )}
 
-          {/* Quick Demo Logins (Super convenient!) */}
+          {/* 1 Demo Account (No switching, no person photo) */}
           <div>
-            <div className="text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-2 flex items-center gap-1.5">
-              <Sparkles className="w-3.5 h-3.5 text-sun" />
-              Quick Demo Login (1-Click)
-            </div>
-            <div className="grid grid-cols-3 gap-2">
-              {USERS.map(demo => (
-                <button
-                  key={demo.id}
-                  type="button"
-                  onClick={() => signInUser(demo)}
-                  className="p-2.5 rounded-2xl border border-slate-200 dark:border-slate-700 hover:border-brand-500 hover:bg-brand-50/50 dark:hover:bg-brand-950/30 text-center transition-all group"
-                >
-                  <img
-                    src={demo.avatar}
-                    alt={demo.name}
-                    className="w-8 h-8 rounded-full object-cover mx-auto mb-1 ring-2 ring-brand-500/20 group-hover:scale-110 transition-transform"
-                  />
-                  <div className="font-bold text-[11px] text-slate-800 dark:text-slate-200 truncate">
-                    {demo.name}
+            <button
+              type="button"
+              onClick={() => signInUser(USERS[0])}
+              className="w-full p-3.5 rounded-2xl border border-brand-500/40 bg-brand-50/60 dark:bg-brand-950/40 hover:bg-brand-100/70 text-left transition-all flex items-center justify-between group"
+            >
+              <div className="flex items-center gap-3">
+                <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-brand-600 to-teal-500 text-white font-extrabold flex items-center justify-center text-xs shadow-sm">
+                  U1
+                </div>
+                <div>
+                  <div className="font-bold text-xs text-slate-900 dark:text-white flex items-center gap-1.5">
+                    Demo Account (User 1)
+                    <span className="text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-full bg-sun text-slate-950">
+                      Gold
+                    </span>
                   </div>
-                  <div className="text-[10px] text-brand-600 dark:text-brand-400 font-extrabold uppercase">
-                    {demo.tier}
+                  <div className="text-[11px] text-slate-400">
+                    user1@wanderlane.demo • 1-Click Access
                   </div>
-                </button>
-              ))}
-            </div>
+                </div>
+              </div>
+
+              <div className="px-3.5 py-1.5 rounded-xl bg-brand-500 text-white font-bold text-xs group-hover:bg-brand-600 transition-colors shadow-sm">
+                Sign In
+              </div>
+            </button>
           </div>
 
           <div className="relative flex items-center justify-center">

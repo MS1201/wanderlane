@@ -209,11 +209,9 @@ export default function Navbar() {
                 onClick={() => setUserDropdown(!userDropdown)}
                 className="flex items-center gap-2.5 pl-1.5 pr-2.5 py-1.5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-brand-500/80 transition-all shadow-sm"
               >
-                <img
-                  src={user.avatar}
-                  alt={user.name}
-                  className="w-7 h-7 rounded-full object-cover ring-2 ring-brand-500/20"
-                />
+                <div className="w-7 h-7 rounded-xl bg-gradient-to-tr from-brand-600 to-teal-500 text-white font-extrabold flex items-center justify-center text-[11px] shadow-sm">
+                  {user.name.replace(/[^A-Za-z0-9]/g, '').slice(0, 2).toUpperCase() || 'U1'}
+                </div>
                 <div className="hidden sm:block text-left text-xs">
                   <div className="font-bold text-slate-900 dark:text-white leading-tight">
                     {user.name}
@@ -258,29 +256,6 @@ export default function Navbar() {
                       <Luggage className="w-4 h-4 text-brand-500" />
                       My Bookings ({trips.length})
                     </button>
-                  </div>
-
-                  <div className="pt-1 border-t border-slate-100 dark:border-slate-800">
-                    <div className="px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-slate-400">
-                      Switch Demo Profile
-                    </div>
-                    {USERS.map(demoUser => (
-                      <button
-                        key={demoUser.id}
-                        onClick={() => {
-                          signInUser(demoUser);
-                          setUserDropdown(false);
-                        }}
-                        className={`w-full flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-medium transition-colors ${
-                          demoUser.id === user.id
-                            ? 'text-brand-600 font-bold bg-brand-50 dark:bg-brand-950/40'
-                            : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800'
-                        }`}
-                      >
-                        <span className="w-2 h-2 rounded-full" style={{ backgroundColor: demoUser.color }} />
-                        {demoUser.name} ({demoUser.tier})
-                      </button>
-                    ))}
                   </div>
 
                   <div className="pt-2 border-t border-slate-100 dark:border-slate-800">
