@@ -36,7 +36,7 @@ export default function BookingCheckoutModal() {
 
   // Step 1: Travellers
   const [step, setStep] = useState(1); // 1 = Details, 2 = Payment, 3 = Confirmed
-  const [leadName, setLeadName] = useState(user?.name || 'Aarav Sharma');
+  const [leadName, setLeadName] = useState(user?.name || 'User 1');
   const [email, setEmail] = useState(user?.email || 'user1@wanderlane.demo');
   const [phone, setPhone] = useState(user?.phone || '+91 98200 11001');
   const [otherTravellers, setOtherTravellers] = useState(() => {
@@ -54,7 +54,7 @@ export default function BookingCheckoutModal() {
   const [cardExp, setCardExp] = useState('12/28');
   const [cardCvv, setCardCvv] = useState('883');
   const [cardName, setCardName] = useState(leadName.toUpperCase());
-  const [upiId, setUpiId] = useState('aarav@okaxis');
+  const [upiId, setUpiId] = useState('user1@okaxis');
   const [selectedBank, setSelectedBank] = useState('HDFC Bank');
 
   // Promo code
@@ -108,7 +108,7 @@ export default function BookingCheckoutModal() {
     setCardNumber('4242 4242 4242 4242');
     setCardExp('12/29');
     setCardCvv('789');
-    setCardName(leadName.toUpperCase() || 'AARAV SHARMA');
+    setCardName(leadName.toUpperCase() || 'USER 1');
   };
 
   const handleNextStep = () => {
@@ -248,7 +248,7 @@ export default function BookingCheckoutModal() {
                     type="text"
                     value={leadName}
                     onChange={(e) => setLeadName(e.target.value)}
-                    placeholder="e.g. Aarav Sharma"
+                    placeholder="e.g. User 1"
                     className="w-full px-3.5 py-2.5 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-xs font-bold"
                   />
                 </div>
@@ -744,3 +744,4 @@ export default function BookingCheckoutModal() {
     </div>
   );
 }
+

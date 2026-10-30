@@ -216,7 +216,7 @@ export default function Navbar() {
                 />
                 <div className="hidden sm:block text-left text-xs">
                   <div className="font-bold text-slate-900 dark:text-white leading-tight">
-                    {user.name.split(' ')[0]}
+                    {user.name}
                   </div>
                   <div className="text-[10px] text-brand-600 dark:text-brand-400 font-semibold flex items-center gap-0.5">
                     <Sparkles className="w-2.5 h-2.5 text-sun" />
@@ -399,3 +399,4 @@ export default function Navbar() {
     </header>
   );
 }
+

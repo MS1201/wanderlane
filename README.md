@@ -44,7 +44,7 @@ A modern, responsive, and functional travel booking web application crafted with
 ### 👑 Wanderlane Loyalty Club & Privileges
 - Tier system: **Explorer** (0%), **Silver** (2% off), **Gold** (5% off), **Platinum** (7% off).
 - Points accumulation (1 point per ₹100 spent) with visual progress bar towards next tier.
-- 1-Click demo account switcher (Aarav Sharma - Gold, Priya Patel - Silver, Rohan Verma - Explorer).
+- 1-Click demo account switcher (User 1 - Gold, User 2 - Silver, User 3 - Explorer).
 
 ### 🌍 Multi-Currency & Dark Mode
 - Live currency switcher: **INR (₹)**, **USD ($)**, **EUR (€)**, **GBP (£)**, **AED**.
@@ -137,3 +137,4 @@ wanderlane/
 
 ## 📄 License
 MIT License. Crafted for travellers and developers alike.
+

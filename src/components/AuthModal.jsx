@@ -169,7 +169,7 @@ export default function AuthModal() {
                     className="w-8 h-8 rounded-full object-cover mx-auto mb-1 ring-2 ring-brand-500/20 group-hover:scale-110 transition-transform"
                   />
                   <div className="font-bold text-[11px] text-slate-800 dark:text-slate-200 truncate">
-                    {demo.name.split(' ')[0]}
+                    {demo.name}
                   </div>
                   <div className="text-[10px] text-brand-600 dark:text-brand-400 font-extrabold uppercase">
                     {demo.tier}
@@ -242,7 +242,7 @@ export default function AuthModal() {
                   type="text"
                   value={signupName}
                   onChange={(e) => setSignupName(e.target.value)}
-                  placeholder="Aarav Sharma"
+                  placeholder="User 1"
                   className="w-full px-3 py-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-xs font-bold"
                 />
               </div>
@@ -316,3 +316,4 @@ export default function AuthModal() {
     </div>
   );
 }
+

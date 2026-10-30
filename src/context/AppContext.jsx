@@ -84,7 +84,7 @@ export function AppProvider({ children }) {
         sub: 'Alleppey & Munnar · 4 days',
         date: '2026-11-20',
         end: '2026-11-24',
-        trav: ['Aarav Sharma', 'Meera Sharma'],
+        trav: ['User 1', 'Companion 1'],
         qty: 2,
         base: 39600,
         memberDiscount: 1980,
@@ -104,7 +104,7 @@ export function AppProvider({ children }) {
         sub: 'SkyJet SJ 402 · 1h 15m · Economy',
         date: '2026-12-05',
         end: '2026-12-05',
-        trav: ['Aarav Sharma'],
+        trav: ['User 1'],
         qty: 1,
         base: 3600,
         memberDiscount: 180,
@@ -114,7 +114,7 @@ export function AppProvider({ children }) {
         status: 'confirmed',
         created: '2026-10-18',
         image: 'https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&w=600&q=80',
-        pay: 'UPI (aarav@okaxis)',
+        pay: 'UPI (user1@okaxis)',
         seats: ['14C']
       }
     ];
@@ -315,3 +315,4 @@ export function useApp() {
   if (!context) throw new Error('useApp must be used within an AppProvider');
   return context;
 }
+

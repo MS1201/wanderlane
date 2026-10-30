@@ -1,7 +1,7 @@
 export const USERS = [
   {
     id: 1,
-    name: 'Aarav Sharma',
+    name: 'User 1',
     email: 'user1@wanderlane.demo',
     pass: 'demo123',
     tier: 'Gold',
@@ -13,7 +13,7 @@ export const USERS = [
   },
   {
     id: 2,
-    name: 'Priya Patel',
+    name: 'User 2',
     email: 'user2@wanderlane.demo',
     pass: 'demo123',
     tier: 'Silver',
@@ -25,7 +25,7 @@ export const USERS = [
   },
   {
     id: 3,
-    name: 'Rohan Verma',
+    name: 'User 3',
     email: 'user3@wanderlane.demo',
     pass: 'demo123',
     tier: 'Explorer',
@@ -623,3 +623,4 @@ export const STAYS = [
     roomTypes: ['Victorian Classic', 'Heritage Suite']
   }
 ];
+

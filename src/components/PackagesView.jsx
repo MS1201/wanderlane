@@ -295,3 +295,4 @@ export default function PackagesView({ searchQuery, categoryFilter, setCategoryF
     </div>
   );
 }
+

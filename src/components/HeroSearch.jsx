@@ -433,3 +433,4 @@ export default function HeroSearch({ onSearchSubmit, packageQuery, setPackageQue
     </div>
   );
 }
+
