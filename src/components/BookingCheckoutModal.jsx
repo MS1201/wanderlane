@@ -28,6 +28,7 @@ export default function BookingCheckoutModal() {
     formatMoney,
     completeBooking,
     setTicketModalItem,
+    setActiveView,
     showToast
   } = useApp();
 
@@ -727,6 +728,7 @@ export default function BookingCheckoutModal() {
                 <button
                   onClick={() => {
                     setCheckoutItem(null);
+                    setActiveView('trips');
                     setTicketModalItem(confirmedTrip);
                   }}
                   className="w-full sm:w-auto px-6 py-3 rounded-xl bg-brand-500 hover:bg-brand-600 text-white font-extrabold text-xs shadow-lg shadow-brand-500/25 transition-all"
@@ -744,10 +746,13 @@ export default function BookingCheckoutModal() {
                   Download PDF
                 </button>
                 <button
-                  onClick={() => setCheckoutItem(null)}
+                  onClick={() => {
+                    setCheckoutItem(null);
+                    setActiveView('trips');
+                  }}
                   className="w-full sm:w-auto px-6 py-3 rounded-xl border border-slate-300 dark:border-slate-700 font-bold text-xs text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
                 >
-                  Return to Wanderlane
+                  View My Trips
                 </button>
               </div>
             </div>
