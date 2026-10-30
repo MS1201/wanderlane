@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useApp } from '../context/AppContext';
 import { PROMOS } from '../data/travelData';
+import { downloadBookingPDF } from '../utils/pdfGenerator';
 import confetti from 'canvas-confetti';
 import {
   X,
@@ -14,7 +15,8 @@ import {
   ChevronLeft,
   Tag,
   Lock,
-  Gift
+  Gift,
+  Download
 } from 'lucide-react';
 
 export default function BookingCheckoutModal() {
@@ -25,7 +27,8 @@ export default function BookingCheckoutModal() {
     getUserTier,
     formatMoney,
     completeBooking,
-    setTicketModalItem
+    setTicketModalItem,
+    showToast
   } = useApp();
 
   if (!checkoutItem) return null;
@@ -729,6 +732,16 @@ export default function BookingCheckoutModal() {
                   className="w-full sm:w-auto px-6 py-3 rounded-xl bg-brand-500 hover:bg-brand-600 text-white font-extrabold text-xs shadow-lg shadow-brand-500/25 transition-all"
                 >
                   View Digital Boarding Ticket
+                </button>
+                <button
+                  onClick={() => {
+                    downloadBookingPDF(confirmedTrip, user);
+                    showToast('Booking PDF downloaded!', 'success');
+                  }}
+                  className="w-full sm:w-auto px-5 py-3 rounded-xl border border-brand-500 text-brand-600 dark:text-brand-400 hover:bg-brand-50 dark:hover:bg-brand-950/40 font-extrabold text-xs transition-all flex items-center justify-center gap-2 shadow-sm"
+                >
+                  <Download className="w-4 h-4" />
+                  Download PDF
                 </button>
                 <button
                   onClick={() => setCheckoutItem(null)}

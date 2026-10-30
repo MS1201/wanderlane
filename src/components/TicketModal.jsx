@@ -1,5 +1,6 @@
 import React from 'react';
 import { useApp } from '../context/AppContext';
+import { downloadBookingPDF } from '../utils/pdfGenerator';
 import {
   X,
   Printer,
@@ -15,7 +16,7 @@ import {
 } from 'lucide-react';
 
 export default function TicketModal() {
-  const { ticketModalItem, setTicketModalItem, formatMoney } = useApp();
+  const { ticketModalItem, setTicketModalItem, formatMoney, user, showToast } = useApp();
 
   if (!ticketModalItem) return null;
 
@@ -50,6 +51,16 @@ export default function TicketModal() {
     window.print();
   };
 
+  const handleDownloadPDF = () => {
+    try {
+      downloadBookingPDF(t, user);
+      showToast('Booking PDF downloaded successfully!', 'success');
+    } catch (err) {
+      console.error(err);
+      showToast('Could not download PDF. Please try again.', 'error');
+    }
+  };
+
   const kindLabel = {
     package: 'Holiday Package Voucher',
     flight: 'Flight Boarding Pass',
@@ -69,6 +80,14 @@ export default function TicketModal() {
           </div>
 
           <div className="flex items-center gap-2">
+            <button
+              onClick={handleDownloadPDF}
+              className="px-3.5 py-2 rounded-xl bg-brand-500 hover:bg-brand-600 text-white transition-colors flex items-center gap-1.5 text-xs font-bold shadow-sm shadow-brand-500/20"
+              title="Download Booking as PDF"
+            >
+              <Download className="w-4 h-4" />
+              Download PDF
+            </button>
             <button
               onClick={handlePrint}
               className="p-2 rounded-xl border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors flex items-center gap-1.5 text-xs font-bold"

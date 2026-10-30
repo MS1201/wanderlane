@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { useApp } from '../context/AppContext';
+import { downloadBookingPDF, downloadAllBookingsPDF } from '../utils/pdfGenerator';
 import {
   Luggage,
   Calendar,
   Users,
   Printer,
+  Download,
   XCircle,
   AlertTriangle,
   ArrowRight,
@@ -15,7 +17,7 @@ import {
 } from 'lucide-react';
 
 export default function TripsView() {
-  const { trips, formatMoney, cancelBooking, setTicketModalItem, setActiveView } = useApp();
+  const { trips, formatMoney, cancelBooking, setTicketModalItem, setActiveView, user, showToast } = useApp();
 
   const [filter, setFilter] = useState('all'); // 'all', 'confirmed', 'cancelled'
   const [cancelModalRef, setCancelModalRef] = useState(null);
@@ -46,37 +48,53 @@ export default function TripsView() {
           </p>
         </div>
 
-        <div className="flex items-center gap-1.5 p-1 bg-slate-100 dark:bg-slate-800 rounded-2xl text-xs font-bold">
-          <button
-            onClick={() => setFilter('all')}
-            className={`px-3.5 py-1.5 rounded-xl transition-all ${
-              filter === 'all'
-                ? 'bg-white dark:bg-slate-700 text-brand-600 dark:text-brand-300 shadow-sm'
-                : 'text-slate-600 dark:text-slate-400'
-            }`}
-          >
-            All Bookings ({trips.length})
-          </button>
-          <button
-            onClick={() => setFilter('confirmed')}
-            className={`px-3.5 py-1.5 rounded-xl transition-all ${
-              filter === 'confirmed'
-                ? 'bg-white dark:bg-slate-700 text-brand-600 dark:text-brand-300 shadow-sm'
-                : 'text-slate-600 dark:text-slate-400'
-            }`}
-          >
-            Confirmed ({trips.filter(t => t.status === 'confirmed').length})
-          </button>
-          <button
-            onClick={() => setFilter('cancelled')}
-            className={`px-3.5 py-1.5 rounded-xl transition-all ${
-              filter === 'cancelled'
-                ? 'bg-white dark:bg-slate-700 text-brand-600 dark:text-brand-300 shadow-sm'
-                : 'text-slate-600 dark:text-slate-400'
-            }`}
-          >
-            Cancelled ({trips.filter(t => t.status === 'cancelled').length})
-          </button>
+        <div className="flex flex-wrap items-center gap-2">
+          {trips.length > 0 && (
+            <button
+              onClick={() => {
+                downloadAllBookingsPDF(trips, user);
+                showToast('Bookings statement PDF downloaded!', 'success');
+              }}
+              className="px-3.5 py-1.5 rounded-xl border border-slate-200 dark:border-slate-700 hover:border-brand-500 text-slate-700 dark:text-slate-300 hover:text-brand-600 dark:hover:text-brand-400 font-bold text-xs transition-colors flex items-center gap-1.5 bg-white dark:bg-slate-800 shadow-sm"
+              title="Download full bookings summary report"
+            >
+              <Download className="w-3.5 h-3.5 text-brand-500" />
+              Download Statement (PDF)
+            </button>
+          )}
+
+          <div className="flex items-center gap-1.5 p-1 bg-slate-100 dark:bg-slate-800 rounded-2xl text-xs font-bold">
+            <button
+              onClick={() => setFilter('all')}
+              className={`px-3.5 py-1.5 rounded-xl transition-all ${
+                filter === 'all'
+                  ? 'bg-white dark:bg-slate-700 text-brand-600 dark:text-brand-300 shadow-sm'
+                  : 'text-slate-600 dark:text-slate-400'
+              }`}
+            >
+              All ({trips.length})
+            </button>
+            <button
+              onClick={() => setFilter('confirmed')}
+              className={`px-3.5 py-1.5 rounded-xl transition-all ${
+                filter === 'confirmed'
+                  ? 'bg-white dark:bg-slate-700 text-brand-600 dark:text-brand-300 shadow-sm'
+                  : 'text-slate-600 dark:text-slate-400'
+              }`}
+            >
+              Confirmed ({trips.filter(t => t.status === 'confirmed').length})
+            </button>
+            <button
+              onClick={() => setFilter('cancelled')}
+              className={`px-3.5 py-1.5 rounded-xl transition-all ${
+                filter === 'cancelled'
+                  ? 'bg-white dark:bg-slate-700 text-brand-600 dark:text-brand-300 shadow-sm'
+                  : 'text-slate-600 dark:text-slate-400'
+              }`}
+            >
+              Cancelled ({trips.filter(t => t.status === 'cancelled').length})
+            </button>
+          </div>
         </div>
       </div>
 
@@ -170,10 +188,22 @@ export default function TripsView() {
                   <div className="flex items-center gap-2">
                     <button
                       onClick={() => setTicketModalItem(trip)}
-                      className="px-4 py-2 rounded-xl bg-brand-50 dark:bg-brand-950/60 text-brand-600 dark:text-brand-300 hover:bg-brand-500 hover:text-white font-bold text-xs transition-colors flex items-center gap-1.5 shadow-sm"
+                      className="px-3.5 py-2 rounded-xl bg-brand-50 dark:bg-brand-950/60 text-brand-600 dark:text-brand-300 hover:bg-brand-500 hover:text-white font-bold text-xs transition-colors flex items-center gap-1.5 shadow-sm"
                     >
                       <Printer className="w-3.5 h-3.5" />
                       View Voucher
+                    </button>
+
+                    <button
+                      onClick={() => {
+                        downloadBookingPDF(trip, user);
+                        showToast(`PDF voucher for ${trip.ref} downloaded!`, 'success');
+                      }}
+                      className="px-3.5 py-2 rounded-xl border border-slate-200 dark:border-slate-700 hover:border-brand-500 text-slate-700 dark:text-slate-200 hover:text-brand-600 dark:hover:text-brand-400 font-bold text-xs transition-colors flex items-center gap-1.5 shadow-sm bg-white dark:bg-slate-800"
+                      title="Download PDF Voucher"
+                    >
+                      <Download className="w-3.5 h-3.5 text-brand-500" />
+                      PDF
                     </button>
 
                     {isConfirmed && (

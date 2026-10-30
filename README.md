@@ -37,8 +37,10 @@ A modern, responsive, and functional travel booking web application crafted with
   - **Promo Codes**: `WANDER10` (10% off), `FIRST500` (₹500 off), `EXPLORE20` (20% off) with celebration confetti.
 - **Step 3**: Instant booking confirmation with unique booking reference (e.g., `WL-78214`).
 
-### 🎟️ Boarding Passes & E-Tickets
-- Realistic printable/downloadable boarding voucher with tear-off barcode, QR code, passenger roster, seat assignments, and refund policy.
+### 🎟️ Boarding Passes, E-Tickets & PDF Downloads
+- **Official PDF Downloads**: Download high-resolution official PDF e-tickets and travel vouchers with custom styling, booking references, passenger specs, payment breakdowns, and verification barcodes.
+- **Vault Statement PDF**: Export complete travel history and bookings summary reports as PDF statements directly from the Travel Vault.
+- Realistic printable boarding vouchers with tear-off barcode, QR code, passenger roster, seat assignments, and refund policy.
 - Full cancellation & refund policy logic (100% refund > 7 days, 50% 2-7 days).
 
 ### 👑 Wanderlane Loyalty Club & Privileges

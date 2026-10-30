@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useApp } from '../context/AppContext';
 import { TIERS, CITIES, USERS } from '../data/travelData';
+import { downloadAllBookingsPDF } from '../utils/pdfGenerator';
 import {
   User,
   Sparkles,
@@ -13,7 +14,8 @@ import {
   ShieldCheck,
   CheckCircle2,
   LogOut,
-  ChevronRight
+  ChevronRight,
+  Download
 } from 'lucide-react';
 
 export default function ProfileView() {
@@ -302,9 +304,23 @@ export default function ProfileView() {
             <div className="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-800 flex items-center justify-between">
               <div>
                 <div className="font-bold text-slate-900 dark:text-white">Digital Travel Vault</div>
-                <div className="text-[11px] text-slate-400">Auto-sync e-tickets & vouchers</div>
+                <div className="text-[11px] text-slate-400">{trips.length} active e-tickets & vouchers</div>
               </div>
-              <CheckCircle2 className="w-4 h-4 text-emerald-500" />
+              <button
+                onClick={() => {
+                  if (trips.length === 0) {
+                    showToast('No bookings found to export', 'info');
+                    return;
+                  }
+                  downloadAllBookingsPDF(trips, user);
+                  showToast('Bookings statement PDF downloaded!', 'success');
+                }}
+                className="px-3 py-1.5 rounded-xl bg-brand-50 hover:bg-brand-100 dark:bg-brand-950/60 dark:hover:bg-brand-900/60 text-brand-600 dark:text-brand-300 font-bold text-xs flex items-center gap-1.5 transition-colors border border-brand-200/60 dark:border-brand-800/60"
+                title="Download all bookings as PDF"
+              >
+                <Download className="w-3.5 h-3.5" />
+                Export PDF
+              </button>
             </div>
           </div>
         </div>
