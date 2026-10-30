@@ -19,7 +19,7 @@ import {
 export default function TripsView() {
   const { trips, formatMoney, cancelBooking, setTicketModalItem, setActiveView, user, showToast } = useApp();
 
-  const [filter, setFilter] = useState('all'); // 'all', 'confirmed', 'cancelled'
+  const [filter, setFilter] = useState('all'); // 'all', 'confirmed'
   const [cancelModalRef, setCancelModalRef] = useState(null);
 
   const filteredTrips = trips.filter(t => {

@@ -229,30 +229,26 @@ export function AppProvider({ children }) {
     return newTrip;
   };
 
-  // Trip Cancellation
+  // Trip Cancellation — removes the booking entirely from trips & bookings
   const cancelBooking = (ref) => {
-    setTrips(prev =>
-      prev.map(t => {
-        if (t.ref === ref) {
-          const tripDate = new Date(t.date);
-          const now = new Date();
-          const daysLeft = Math.round((tripDate - now) / (1000 * 60 * 60 * 24));
-          let refundAmount = 0;
-          if (daysLeft > 7) {
-            refundAmount = t.total;
-          } else if (daysLeft > 2) {
-            refundAmount = Math.round(t.total * 0.5);
-          }
-          showToast(`Trip ${ref} cancelled. Refund of ${formatMoney(refundAmount)} initiated.`, 'info');
-          return {
-            ...t,
-            status: 'cancelled',
-            refundAmount
-          };
-        }
-        return t;
-      })
-    );
+    setTrips(prev => {
+      const trip = prev.find(t => t.ref === ref);
+      if (!trip) return prev;
+
+      const tripDate = new Date(trip.date);
+      const now = new Date();
+      const daysLeft = Math.round((tripDate - now) / (1000 * 60 * 60 * 24));
+      let refundAmount = 0;
+      if (daysLeft > 7) {
+        refundAmount = trip.total;
+      } else if (daysLeft > 2) {
+        refundAmount = Math.round(trip.total * 0.5);
+      }
+      showToast(`Booking ${ref} cancelled. Refund of ${formatMoney(refundAmount)} initiated.`, 'info');
+
+      // Remove the booking entirely so it disappears from both Trips and Bookings count
+      return prev.filter(t => t.ref !== ref);
+    });
   };
 
   // Sign out / Switch user
