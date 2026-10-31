@@ -126,7 +126,9 @@ export function AppProvider({ children }) {
     return getStored(`wishlist_${uId}`, ['p:maldives', 'p:ladakh', 's:0']);
   });
 
-  // Sync trips and wishlist whenever user changes
+  // Sync trips and wishlist only when the user ID changes (login / account switch)
+  // Using user?.id as the dependency prevents overwriting newly added bookings
+  // when completeBooking updates user.points (same user, different object reference).
   useEffect(() => {
     if (user) {
       setStored('session_email', user.email);
@@ -135,7 +137,7 @@ export function AppProvider({ children }) {
       const userWish = getStored(`wishlist_${user.id}`, null);
       if (userWish) setWishlist(userWish);
     }
-  }, [user]);
+  }, [user?.id]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Save trips and wishlist to storage
   useEffect(() => {
